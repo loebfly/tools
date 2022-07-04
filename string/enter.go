@@ -1,4 +1,4 @@
-package string
+package str
 
 type Instance struct {
 	Verify
