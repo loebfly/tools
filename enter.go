@@ -1,15 +1,17 @@
 package tools
 
 import (
+	m "github.com/loebfly/tools/map"
 	"github.com/loebfly/tools/math"
 	str "github.com/loebfly/tools/string"
 )
 
-type Main struct {
+type Tools struct {
 	Math   math.Instance
 	String str.Instance
+	Map    m.Instance
 }
 
-func Instance() *Main {
-	return &Main{}
+func Get() *Tools {
+	return &Tools{}
 }

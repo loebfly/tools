@@ -2,8 +2,7 @@ package str
 
 import "regexp"
 
-type Verify struct {
-}
+type Verify struct{}
 
 func (receiver *Verify) IsCNMobile(s string) bool {
 	reg, _ := regexp.Compile(`^1[3456789]\d{9}$`)
