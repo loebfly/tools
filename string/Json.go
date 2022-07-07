@@ -20,7 +20,7 @@ func (j Json) ItoS(src interface{}) string {
 	}
 }
 
-func (j Json) StoI(src string, receiver *interface{}) bool {
+func (j Json) StoI(src string, receiver interface{}) bool {
 	err := json.Unmarshal([]byte(src), &receiver)
 	if err != nil {
 		return false

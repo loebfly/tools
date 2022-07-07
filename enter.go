@@ -7,11 +7,7 @@ import (
 	str "github.com/loebfly/tools/string"
 )
 
-type Tools struct {
-	Math   math.Instance
-	String str.Instance
-	Map    m.Instance
-	Crypto crypto.Instance
-}
-
-var Router = new(Tools)
+var Math = new(math.Instance)
+var String = new(str.Instance)
+var Map = new(m.Instance)
+var Crypto = new(crypto.Instance)
