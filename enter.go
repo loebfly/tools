@@ -14,6 +14,4 @@ type Tools struct {
 	Crypto crypto.Instance
 }
 
-func Get() *Tools {
-	return &Tools{}
-}
+var Router = new(Tools)
