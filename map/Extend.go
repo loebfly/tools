@@ -1,6 +1,10 @@
 package mapT
 
-import "encoding/json"
+import (
+	"encoding/json"
+	"reflect"
+	"strings"
+)
 
 type Extend struct{}
 
@@ -68,11 +72,32 @@ func (e Extend) GetValuesI(p map[string]interface{}) []interface{} {
 	return values
 }
 
-// ToJson 字典转Json
-func (e Extend) ToJson(p map[string]interface{}) string {
+// ToJsonI 字典转Json
+func (e Extend) ToJsonI(p map[string]interface{}) string {
 	jsonStr, err := json.Marshal(p)
 	if err != nil {
 		return ""
 	}
 	return string(jsonStr)
+}
+
+// ToJsonS 字典转Json
+func (e Extend) ToJsonS(p map[string]string) string {
+	jsonStr, err := json.Marshal(p)
+	if err != nil {
+		return ""
+	}
+	return string(jsonStr)
+}
+
+// FromStruct 结构体转字典
+func (e Extend) FromStruct(obj interface{}) map[string]interface{} {
+	obj1 := reflect.TypeOf(obj)
+	obj2 := reflect.ValueOf(obj)
+
+	var data = make(map[string]interface{})
+	for i := 0; i < obj1.NumField(); i++ {
+		data[strings.ToLower(obj1.Field(i).Name)] = obj2.Field(i).Interface()
+	}
+	return data
 }
