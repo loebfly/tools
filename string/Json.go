@@ -1,4 +1,4 @@
-package str
+package stringT
 
 import (
 	"encoding/json"
@@ -13,11 +13,11 @@ func (js jsonString) ItoS(src interface{}) string {
 	if err != nil {
 		return "{}"
 	} else {
-		json := string(b)
-		json = strings.Replace(json, "\\u003c", "<", -1)
-		json = strings.Replace(json, "\\u003e", ">", -1)
-		json = strings.Replace(json, "\\u0026", "&", -1)
-		return json
+		result := string(b)
+		result = strings.Replace(result, "\\u003c", "<", -1)
+		result = strings.Replace(result, "\\u003e", ">", -1)
+		result = strings.Replace(result, "\\u0026", "&", -1)
+		return result
 	}
 }
 

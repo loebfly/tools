@@ -1,11 +1,11 @@
-package gin
+package ginT
 
-import gonicgin "github.com/gin-gonic/gin"
+import "github.com/gin-gonic/gin"
 
 type contextExt struct{}
 
 // GetParams 获取请求参数
-func (ce contextExt) GetParams(c *gonicgin.Context) map[string]string {
+func (ce contextExt) GetParams(c *gin.Context) map[string]string {
 	params := make(map[string]string)
 	if c.Request.Method == "GET" {
 		for k, v := range c.Request.URL.Query() {

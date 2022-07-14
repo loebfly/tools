@@ -1,6 +1,6 @@
-package Dictionary
+package mapT
 
 type Enter struct {
-	StringExt StringExt
-	Merge     Merge
+	Ext   Extend
+	Merge Merge
 }

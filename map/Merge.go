@@ -1,4 +1,4 @@
-package Dictionary
+package mapT
 
 type Merge struct{}
 
