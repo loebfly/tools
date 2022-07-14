@@ -5,9 +5,10 @@ import (
 	"strings"
 )
 
-type Json struct{}
+type jsonString struct{}
 
-func (j Json) ItoS(src interface{}) string {
+// ItoS converts interface to string.
+func (js jsonString) ItoS(src interface{}) string {
 	b, err := json.Marshal(src)
 	if err != nil {
 		return "{}"
@@ -20,7 +21,8 @@ func (j Json) ItoS(src interface{}) string {
 	}
 }
 
-func (j Json) StoI(src string, receiver interface{}) bool {
+// StoI converts string to interface.
+func (js jsonString) StoI(src string, receiver interface{}) bool {
 	err := json.Unmarshal([]byte(src), &receiver)
 	if err != nil {
 		return false

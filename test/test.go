@@ -23,4 +23,11 @@ func main() {
 	fmt.Println(t)
 
 	tools.Crypto.MD5.EncodeString("123456")
+
+	tools.Math.Condition.FirstNonNil(1, 2, 3)
+
+	t1 := tools.Math.Random.Int(0, 10)
+	t2 := tools.Math.Random.Int(0, 10)
+	tools.Math.Condition.IfThenElse(t1 > t2, t1, t2)
+
 }

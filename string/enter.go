@@ -1,6 +1,6 @@
 package str
 
-type Instance struct {
-	Verify Verify
-	Json   Json
+type Enter struct {
+	Verify verifyString // 验证
+	Json   jsonString   // json
 }

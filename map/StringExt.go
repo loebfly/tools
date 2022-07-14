@@ -1,22 +1,25 @@
-package m
+package Dictionary
 
 import "strconv"
 
 type StringExt struct{}
 
-func (receiver *StringExt) IsExistKey(p map[string]string, k string) bool {
+// IsExistKey 判断key是否存在
+func (se StringExt) IsExistKey(p map[string]string, k string) bool {
 	_, ok := p[k]
 	return ok
 }
 
-func (receiver *StringExt) isEmpty(p map[string]string, k string) bool {
-	if receiver.IsExistKey(p, k) {
+// IsEmpty 判断是否为空
+func (se StringExt) IsEmpty(p map[string]string, k string) bool {
+	if se.IsExistKey(p, k) {
 		return p[k] == ""
 	}
 	return true
 }
 
-func (receiver *StringExt) GetKeys(p map[string]string) []string {
+// GetKeys 获取所有key
+func (se StringExt) GetKeys(p map[string]string) []string {
 	var keys = make([]string, 0)
 	for k := range p {
 		keys = append(keys, k)
@@ -24,7 +27,8 @@ func (receiver *StringExt) GetKeys(p map[string]string) []string {
 	return keys
 }
 
-func (receiver *StringExt) GetValues(p map[string]string) []interface{} {
+// GetValues 获取所有value
+func (se StringExt) GetValues(p map[string]string) []interface{} {
 	var values = make([]interface{}, 0)
 	for _, v := range p {
 		values = append(values, v)
@@ -32,8 +36,9 @@ func (receiver *StringExt) GetValues(p map[string]string) []interface{} {
 	return values
 }
 
-func (receiver *StringExt) GetFloatValue(p map[string]string, k string) float64 {
-	if receiver.IsExistKey(p, k) {
+// GetFloatValue 获取某个Key的float64值
+func (se StringExt) GetFloatValue(p map[string]string, k string) float64 {
+	if se.IsExistKey(p, k) {
 		v, e := strconv.ParseFloat(p[k], 64)
 		if e == nil {
 			return 0
@@ -43,8 +48,9 @@ func (receiver *StringExt) GetFloatValue(p map[string]string, k string) float64 
 	return 0
 }
 
-func (receiver *StringExt) GetBoolValue(p map[string]string, k string) bool {
-	if receiver.IsExistKey(p, k) {
+// GetBoolValue 获取某个Key的bool值
+func (se StringExt) GetBoolValue(p map[string]string, k string) bool {
+	if se.IsExistKey(p, k) {
 		v, e := strconv.ParseBool(p[k])
 		if e == nil {
 			return v
@@ -54,8 +60,9 @@ func (receiver *StringExt) GetBoolValue(p map[string]string, k string) bool {
 	return false
 }
 
-func (receiver *StringExt) GetIntValue(p map[string]string, k string) int64 {
-	if receiver.IsExistKey(p, k) {
+// GetIntValue 获取某个Key的int值
+func (se StringExt) GetIntValue(p map[string]string, k string) int64 {
+	if se.IsExistKey(p, k) {
 		v, e := strconv.ParseInt(p[k], 10, 64)
 		if e == nil {
 			return v
@@ -65,8 +72,9 @@ func (receiver *StringExt) GetIntValue(p map[string]string, k string) int64 {
 	return 0
 }
 
-func (receiver *StringExt) GetInt32Value(p map[string]string, k string) int32 {
-	if receiver.IsExistKey(p, k) {
+// GetInt32Value 获取某个Key的int32值
+func (se StringExt) GetInt32Value(p map[string]string, k string) int32 {
+	if se.IsExistKey(p, k) {
 		v, e := strconv.ParseInt(p[k], 10, 32)
 		if e == nil {
 			return int32(v)
@@ -76,8 +84,9 @@ func (receiver *StringExt) GetInt32Value(p map[string]string, k string) int32 {
 	return 0
 }
 
-func (receiver *StringExt) GetInt16Value(p map[string]string, k string) int16 {
-	if receiver.IsExistKey(p, k) {
+// GetInt16Value 获取某个Key的int16值
+func (se StringExt) GetInt16Value(p map[string]string, k string) int16 {
+	if se.IsExistKey(p, k) {
 		v, e := strconv.ParseInt(p[k], 10, 16)
 		if e == nil {
 			return int16(v)
@@ -87,8 +96,9 @@ func (receiver *StringExt) GetInt16Value(p map[string]string, k string) int16 {
 	return 0
 }
 
-func (receiver *StringExt) GetInt8Value(p map[string]string, k string) int8 {
-	if receiver.IsExistKey(p, k) {
+// GetInt8Value 获取某个Key的int8值
+func (se StringExt) GetInt8Value(p map[string]string, k string) int8 {
+	if se.IsExistKey(p, k) {
 		v, e := strconv.ParseInt(p[k], 10, 8)
 		if e == nil {
 			return int8(v)
@@ -98,8 +108,9 @@ func (receiver *StringExt) GetInt8Value(p map[string]string, k string) int8 {
 	return 0
 }
 
-func (receiver *StringExt) GetUintValue(p map[string]string, k string) uint {
-	if receiver.IsExistKey(p, k) {
+// GetUintValue 获取某个Key的uint值
+func (se StringExt) GetUintValue(p map[string]string, k string) uint {
+	if se.IsExistKey(p, k) {
 		v, e := strconv.ParseUint(p[k], 10, 64)
 		if e == nil {
 			return uint(v)
@@ -109,8 +120,9 @@ func (receiver *StringExt) GetUintValue(p map[string]string, k string) uint {
 	return 0
 }
 
-func (receiver *StringExt) GetUint32Value(p map[string]string, k string) uint32 {
-	if receiver.IsExistKey(p, k) {
+// GetUint32Value 获取某个Key的uint32值
+func (se StringExt) GetUint32Value(p map[string]string, k string) uint32 {
+	if se.IsExistKey(p, k) {
 		v, e := strconv.ParseUint(p[k], 10, 32)
 		if e == nil {
 			return uint32(v)
@@ -120,8 +132,9 @@ func (receiver *StringExt) GetUint32Value(p map[string]string, k string) uint32 
 	return 0
 }
 
-func (receiver *StringExt) GetUint16Value(p map[string]string, k string) uint16 {
-	if receiver.IsExistKey(p, k) {
+// GetUint16Value 获取某个Key的uint16值
+func (se StringExt) GetUint16Value(p map[string]string, k string) uint16 {
+	if se.IsExistKey(p, k) {
 		v, e := strconv.ParseUint(p[k], 10, 16)
 		if e == nil {
 			return uint16(v)
@@ -131,8 +144,9 @@ func (receiver *StringExt) GetUint16Value(p map[string]string, k string) uint16 
 	return 0
 }
 
-func (receiver *StringExt) GetUint8Value(p map[string]string, k string) uint8 {
-	if receiver.IsExistKey(p, k) {
+// GetUint8Value 获取某个Key的uint8值
+func (se StringExt) GetUint8Value(p map[string]string, k string) uint8 {
+	if se.IsExistKey(p, k) {
 		v, e := strconv.ParseUint(p[k], 10, 8)
 		if e == nil {
 			return uint8(v)

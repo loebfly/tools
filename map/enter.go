@@ -1,6 +1,6 @@
-package m
+package Dictionary
 
-type Instance struct {
+type Enter struct {
 	StringExt StringExt
 	Merge     Merge
 }

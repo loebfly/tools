@@ -2,13 +2,15 @@ package crypto
 
 import "encoding/base64"
 
-type Base64 struct{}
+type base64Crypto struct{}
 
-func (b *Base64) EncodeByte(src []byte) []byte {
+// EncodeByte 对字节数组进行 base64 编码
+func (bc base64Crypto) EncodeByte(src []byte) []byte {
 	return []byte(base64.StdEncoding.EncodeToString(src))
 }
 
-func (b *Base64) DecodeByte(src []byte) []byte {
+// DecodeByte 对 base64 编码的字节数组进行解码
+func (bc base64Crypto) DecodeByte(src []byte) []byte {
 	out, err := base64.StdEncoding.DecodeString(string(src))
 	if err != nil {
 		return nil
@@ -17,11 +19,13 @@ func (b *Base64) DecodeByte(src []byte) []byte {
 	}
 }
 
-func (b *Base64) EncodeString(src string) string {
+// EncodeString 对字符串进行 base64 编码
+func (bc base64Crypto) EncodeString(src string) string {
 	return base64.StdEncoding.EncodeToString([]byte(src))
 }
 
-func (b *Base64) DecodeString(src string) string {
+// DecodeString 对 base64 编码的字符串进行解码
+func (bc base64Crypto) DecodeString(src string) string {
 	out, err := base64.StdEncoding.DecodeString(src)
 	if err != nil {
 		return ""

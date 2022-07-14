@@ -9,30 +9,34 @@ import (
 	"strings"
 )
 
-type MD5 struct{}
+type md5Crypto struct{}
 
-func (m *MD5) EncodeString(str string) string {
+// EncodeString 对字符串进行 md5 加密
+func (mc md5Crypto) EncodeString(str string) string {
 	h := md5.New()
 	_, _ = io.WriteString(h, str)
 	md := fmt.Sprintf("%x", h.Sum(nil))
 	return md
 }
 
-func (m *MD5) EncodeBytes(bytes []byte) string {
+// EncodeBytes 对字节数组进行 md5 加密
+func (mc md5Crypto) EncodeBytes(bytes []byte) string {
 	h := md5.New()
 	_, _ = io.WriteString(h, string(bytes))
 	md := fmt.Sprintf("%x", h.Sum(nil))
 	return md
 }
 
-func (m *MD5) EncodeReader(reader io.Reader) string {
+// EncodeReader 对 io.Reader 进行 md5 加密
+func (mc md5Crypto) EncodeReader(reader io.Reader) string {
 	h := md5.New()
 	_, _ = io.Copy(h, reader)
 	md := fmt.Sprintf("%x", h.Sum(nil))
 	return md
 }
 
-func (m *MD5) EncodeFile(filename string) string {
+// EncodeFile 对文件进行 md5 加密
+func (mc md5Crypto) EncodeFile(filename string) string {
 	f, err := os.Open(filename) //打开文件
 	if nil != err {
 		fmt.Println(err)
@@ -51,7 +55,8 @@ func (m *MD5) EncodeFile(filename string) string {
 	return md5str
 }
 
-func (m *MD5) EncodeStringMap(sm map[string]string) string {
+// EncodeStringMap 对字符串 map 进行 md5 加密
+func (mc md5Crypto) EncodeStringMap(sm map[string]string) string {
 	sortedmap := treemap.NewWithStringComparator()
 	for k, v := range sm {
 		sortedmap.Put(k, v)
@@ -63,5 +68,5 @@ func (m *MD5) EncodeStringMap(sm map[string]string) string {
 		}
 	})
 	sign = strings.TrimRight(sign, "&")
-	return m.EncodeString(sign)
+	return mc.EncodeString(sign)
 }
