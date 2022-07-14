@@ -8,7 +8,7 @@ import (
 	"github.com/loebfly/tools/string"
 )
 
-var Math = new(math.Enter)      // 算法工具
+var Math = new(math.Enter)      // 计算工具
 var String = new(stringT.Enter) // 字符串工具
 var Map = new(mapT.Enter)       // map工具
 var Crypto = new(crypto.Enter)  // 加密工具

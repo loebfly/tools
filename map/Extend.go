@@ -1,5 +1,7 @@
 package mapT
 
+import "encoding/json"
+
 type Extend struct{}
 
 // IsExistS 判断key是否存在
@@ -64,4 +66,13 @@ func (e Extend) GetValuesI(p map[string]interface{}) []interface{} {
 		values = append(values, v)
 	}
 	return values
+}
+
+// ToJson 字典转Json
+func (e Extend) ToJson(p map[string]interface{}) string {
+	jsonStr, err := json.Marshal(p)
+	if err != nil {
+		return ""
+	}
+	return string(jsonStr)
 }
