@@ -7,9 +7,9 @@ import (
 
 type jsonString struct{}
 
-// ItoS converts interface to string.
-func (js jsonString) ItoS(src interface{}) string {
-	b, err := json.Marshal(src)
+// ToJsonFromObj converts obj to JSON.
+func (js jsonString) ToJsonFromObj(obj interface{}) string {
+	b, err := json.Marshal(obj)
 	if err != nil {
 		return "{}"
 	} else {
@@ -21,12 +21,18 @@ func (js jsonString) ItoS(src interface{}) string {
 	}
 }
 
-// StoI converts string to interface.
-func (js jsonString) StoI(src string, receiver interface{}) bool {
-	err := json.Unmarshal([]byte(src), &receiver)
+// ToObjFromJson converts JSON to obj.
+func (js jsonString) ToObjFromJson(src string, obj interface{}) bool {
+	err := json.Unmarshal([]byte(src), &obj)
 	if err != nil {
 		return false
 	} else {
 		return true
 	}
+}
+
+// ToObjFromInterface converts map or slice to obj.
+func (js jsonString) ToObjFromInterface(src interface{}, obj interface{}) bool {
+	jsonStr := js.ToJsonFromObj(src)
+	return js.ToObjFromJson(jsonStr, obj)
 }

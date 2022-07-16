@@ -72,8 +72,8 @@ func (e Extend) GetValuesI(p map[string]interface{}) []interface{} {
 	return values
 }
 
-// ToJsonI 字典转Json
-func (e Extend) ToJsonI(p map[string]interface{}) string {
+// ToJsonFromMapI 字典转Json
+func (e Extend) ToJsonFromMapI(p map[string]interface{}) string {
 	jsonStr, err := json.Marshal(p)
 	if err != nil {
 		return ""
@@ -81,8 +81,8 @@ func (e Extend) ToJsonI(p map[string]interface{}) string {
 	return string(jsonStr)
 }
 
-// ToJsonS 字典转Json
-func (e Extend) ToJsonS(p map[string]string) string {
+// ToJsonFromMapS 字典转Json
+func (e Extend) ToJsonFromMapS(p map[string]string) string {
 	jsonStr, err := json.Marshal(p)
 	if err != nil {
 		return ""
@@ -90,8 +90,8 @@ func (e Extend) ToJsonS(p map[string]string) string {
 	return string(jsonStr)
 }
 
-// FromStruct 结构体转字典
-func (e Extend) FromStruct(obj interface{}) map[string]interface{} {
+// ToMapIFromObj 结构体转字典
+func (e Extend) ToMapIFromObj(obj interface{}) map[string]interface{} {
 	obj1 := reflect.TypeOf(obj)
 	obj2 := reflect.ValueOf(obj)
 
