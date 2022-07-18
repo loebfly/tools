@@ -25,12 +25,6 @@ func (vs verifyString) IsIDCard(s string) bool {
 	return reg.MatchString(s)
 }
 
-// IsIP 判断是否是IP地址
-func (vs verifyString) IsIP(s string) bool {
-	reg, _ := regexp.Compile(`^((2[0-4]\d|25[0-5]|[01]?\d\d?)\.){3}(2[0-4]\d|25[0-5]|[01]?\d\d?)$`)
-	return reg.MatchString(s)
-}
-
 // IsURL 判断是否是URL
 func (vs verifyString) IsURL(s string) bool {
 	reg, _ := regexp.Compile(`^http[s]?://[\w.]+[\w/]$`)

@@ -5,10 +5,17 @@ import (
 	"log"
 	"net"
 	"os/exec"
+	"regexp"
 	"runtime"
 	"strconv"
 	"strings"
 )
+
+// IsCorrect 判断是否是IP地址
+func (Enter) IsCorrect(ip string) bool {
+	reg, _ := regexp.Compile(`^((2[0-4]\d|25[0-5]|[01]?\d\d?)\.){3}(2[0-4]\d|25[0-5]|[01]?\d\d?)$`)
+	return reg.MatchString(ip)
+}
 
 // GetLocal return local ip address
 func (Enter) GetLocal() string {
