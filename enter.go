@@ -8,6 +8,7 @@ import (
 	jsonT "github.com/loebfly/tools/json"
 	mapT "github.com/loebfly/tools/map"
 	"github.com/loebfly/tools/math"
+	"github.com/loebfly/tools/shell"
 	sqlT "github.com/loebfly/tools/sql"
 	stringT "github.com/loebfly/tools/string"
 )
@@ -22,4 +23,5 @@ var (
 	File   = new(fileT.Enter)   // 文件工具
 	SQL    = new(sqlT.Enter)    // sql工具
 	IP     = new(ipT.Enter)     // ip工具
+	Shell  = new(shell.Enter)   // shell工具
 )
