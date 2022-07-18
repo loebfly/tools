@@ -12,6 +12,7 @@ import (
 	"github.com/loebfly/tools/shell"
 	sqlT "github.com/loebfly/tools/sql"
 	stringT "github.com/loebfly/tools/string"
+	timeT "github.com/loebfly/tools/time"
 )
 
 var (
@@ -26,4 +27,5 @@ var (
 	IP     = new(ipT.Enter)     // ip工具
 	Shell  = new(shell.Enter)   // shell工具
 	SFTP   = new(sftpT.Enter)   // sftp工具
+	Time   = new(timeT.Enter)   // 时间工具
 )

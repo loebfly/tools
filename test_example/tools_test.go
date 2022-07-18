@@ -8,21 +8,8 @@ import (
 	"github.com/pkg/sftp"
 	"golang.org/x/crypto/ssh"
 	"testing"
+	"time"
 )
-
-/*
-	Math   = new(math.Enter)    // 计算工具
-	String = new(stringT.Enter) // 字符串工具
-	Map    = new(mapT.Enter)    // map工具
-	Crypto = new(crypto.Enter)  // 加密工具
-	Gin    = new(ginT.Enter)    // gin工具
-	Json   = new(jsonT.Enter)   // json工具
-	File   = new(fileT.Enter)   // 文件工具
-	SQL    = new(sqlT.Enter)    // sql工具
-	IP     = new(ipT.Enter)     // ip工具
-	Shell  = new(shell.Enter)   // shell工具
-	SFTP   = new(sftpT.Enter)   // sftp工具
-*/
 
 func TestMath(t *testing.T) {
 	random := tools.Math.Random
@@ -368,4 +355,54 @@ func TestSFTP(t *testing.T) {
 	if err != nil {
 		fmt.Println("UploadFile err:", err)
 	}
+}
+
+func TestTime(t *testing.T) {
+	timeStr := tools.Time.Fmt.GetNowDateTime()
+	fmt.Println("GetNowDateTime:", timeStr)
+
+	timeStr = tools.Time.Fmt.GetNowDate()
+	fmt.Println("GetNowDate:", timeStr)
+
+	timeStr = tools.Time.Fmt.GetNowTime()
+	fmt.Println("GetNowTime:", timeStr)
+
+	timeStr = tools.Time.Fmt.GetNowWeekday()
+	fmt.Println("GetNowWeekday:", timeStr)
+
+	timeStr = tools.Time.Fmt.Convert("2018-01-01 00:00:00", "yyyy-MM-dd")
+	fmt.Println("Convert:", timeStr)
+
+	timeStr = tools.Time.Fmt.Get(time.Now(), "2006-01-02 15:04:05")
+	fmt.Println("Get:", timeStr)
+
+	timeStr = tools.Time.Fmt.Get(time.Now(), "yyyy-MM-dd HH:mm:ss")
+	fmt.Println("Get:", timeStr)
+
+	timeStr = tools.Time.Fmt.Get(time.Now(), "yyyy-MM-dd HH:mm")
+	fmt.Println("Get:", timeStr)
+
+	timeStr = tools.Time.Fmt.Get(time.Now(), "yyyy-MM-dd HH")
+	fmt.Println("Get:", timeStr)
+
+	timeStr = tools.Time.Fmt.Get(time.Now(), "yyyy-MM-dd")
+	fmt.Println("Get:", timeStr)
+
+	timeStr = tools.Time.Fmt.Get(time.Now(), "yyyy-MM")
+	fmt.Println("Get:", timeStr)
+
+	timeStr = tools.Time.Fmt.Get(time.Now(), "yyyy")
+	fmt.Println("Get:", timeStr)
+
+	timeStr = tools.Time.Fmt.Get(time.Now(), "MMMM")
+	fmt.Println("Get:", timeStr)
+
+	timeStr = tools.Time.Fmt.Get(time.Now(), "MMM")
+	fmt.Println("Get:", timeStr)
+
+	timeStr = tools.Time.Fmt.Get(time.Now(), "MM")
+	fmt.Println("Get:", timeStr)
+
+	timeStr = tools.Time.Fmt.Get(time.Now(), "M")
+	fmt.Println("Get:", timeStr)
 }
