@@ -3,17 +3,23 @@ package tools
 import (
 	"github.com/loebfly/tools/crypto"
 	fileT "github.com/loebfly/tools/file"
-	"github.com/loebfly/tools/gin"
+	ginT "github.com/loebfly/tools/gin"
+	ipT "github.com/loebfly/tools/ip"
 	jsonT "github.com/loebfly/tools/json"
-	"github.com/loebfly/tools/map"
+	mapT "github.com/loebfly/tools/map"
 	"github.com/loebfly/tools/math"
-	"github.com/loebfly/tools/string"
+	sqlT "github.com/loebfly/tools/sql"
+	stringT "github.com/loebfly/tools/string"
 )
 
-var Math = new(math.Enter)      // 计算工具
-var String = new(stringT.Enter) // 字符串工具
-var Map = new(mapT.Enter)       // map工具
-var Crypto = new(crypto.Enter)  // 加密工具
-var Gin = new(ginT.Enter)       // gin工具
-var Json = new(jsonT.Enter)     // json工具
-var File = new(fileT.Enter)     // 文件工具
+var (
+	Math   = new(math.Enter)    // 计算工具
+	String = new(stringT.Enter) // 字符串工具
+	Map    = new(mapT.Enter)    // map工具
+	Crypto = new(crypto.Enter)  // 加密工具
+	Gin    = new(ginT.Enter)    // gin工具
+	Json   = new(jsonT.Enter)   // json工具
+	File   = new(fileT.Enter)   // 文件工具
+	SQL    = new(sqlT.Enter)    // sql工具
+	IP     = new(ipT.Enter)     // ip工具
+)
