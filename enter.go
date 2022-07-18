@@ -14,6 +14,7 @@ import (
 	sqlT "github.com/loebfly/tools/sql"
 	stringT "github.com/loebfly/tools/string"
 	timeT "github.com/loebfly/tools/time"
+	uuidT "github.com/loebfly/tools/uuid"
 )
 
 var (
@@ -30,4 +31,5 @@ var (
 	Shell  = new(shell.Enter)   // shell工具
 	SFTP   = new(sftpT.Enter)   // sftp工具
 	Time   = new(timeT.Enter)   // 时间工具
+	UUID   = new(uuidT.Enter)   // uuid工具
 )

@@ -416,3 +416,16 @@ func TestTime(t *testing.T) {
 	timeStr = tools.Time.Fmt.Get(time.Now(), "M")
 	fmt.Println("Get:", timeStr)
 }
+
+func TestUUID(t *testing.T) {
+	uuid := tools.UUID
+
+	uuidStr := uuid.Get()
+	fmt.Println("Get:", uuidStr)
+
+	uuidStr = uuid.GetNoMinus()
+	fmt.Println("GetShort:", uuidStr)
+
+	uuidStr = uuid.GetNoMinusWithLen(8)
+	fmt.Println("GetLong:", uuidStr)
+}
