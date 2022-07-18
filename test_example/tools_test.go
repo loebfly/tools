@@ -420,12 +420,15 @@ func TestTime(t *testing.T) {
 func TestUUID(t *testing.T) {
 	uuid := tools.UUID
 
-	uuidStr := uuid.Get()
+	uuidStr := uuid.Get(false)
 	fmt.Println("Get:", uuidStr)
 
-	uuidStr = uuid.GetNoMinus()
-	fmt.Println("GetShort:", uuidStr)
+	uuidStr = uuid.Get(true)
+	fmt.Println("Get:", uuidStr)
 
-	uuidStr = uuid.GetNoMinusWithLen(8)
-	fmt.Println("GetLong:", uuidStr)
+	uuidStr = uuid.GetV4(false)
+	fmt.Println("GetV4:", uuidStr)
+
+	uuidStr = uuid.GetV4(true)
+	fmt.Println("GetV4:", uuidStr)
 }

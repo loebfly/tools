@@ -5,22 +5,25 @@ import (
 	"strings"
 )
 
-// Get 获取uuid
-func (ue Enter) Get() string {
-	u, _ := uuid.NewV4()
+// GetV1 基于时间和MAC地址生成的UUID, offMinus 是否去除"-"
+func (ue Enter) GetV1(offMinus bool) string {
+	u, _ := uuid.NewV1()
+	if !offMinus {
+		return strings.ReplaceAll(u.String(), "-", "")
+	}
 	return u.String()
 }
 
-// GetNoMinus 获取没有-的uuid
-func (ue Enter) GetNoMinus() string {
-	return strings.ReplaceAll(ue.Get(), "-", "")
+// GetV4 基于随机数生成的UUID, offMinus 是否去除"-"
+func (ue Enter) GetV4(offMinus bool) string {
+	u, _ := uuid.NewV4()
+	if !offMinus {
+		return strings.ReplaceAll(u.String(), "-", "")
+	}
+	return u.String()
 }
 
-// GetNoMinusWithLen 获取没有-的uuid，长度为len
-func (ue Enter) GetNoMinusWithLen(l int) string {
-	u := ue.GetNoMinus()
-	if len(u) > l {
-		u = u[:l]
-	}
-	return u
+// Get == GetV1 基于时间和MAC地址生成的UUID, offMinus 是否去除"-"
+func (ue Enter) Get(offMinus bool) string {
+	return ue.GetV1(offMinus)
 }
