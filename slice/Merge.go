@@ -21,3 +21,13 @@ func (m Merge) Strings(list ...[]string) (result []string) {
 	}
 	return
 }
+
+// Ints 合并整数数组
+func (m Merge) Ints(list ...[]int) (result []int) {
+	for _, value := range list {
+		for _, v := range value {
+			result = append(result, v)
+		}
+	}
+	return
+}

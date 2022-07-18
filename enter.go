@@ -10,6 +10,7 @@ import (
 	"github.com/loebfly/tools/math"
 	"github.com/loebfly/tools/sftp"
 	"github.com/loebfly/tools/shell"
+	"github.com/loebfly/tools/slice"
 	sqlT "github.com/loebfly/tools/sql"
 	stringT "github.com/loebfly/tools/string"
 	timeT "github.com/loebfly/tools/time"
@@ -19,6 +20,7 @@ var (
 	Math   = new(math.Enter)    // 计算工具
 	String = new(stringT.Enter) // 字符串工具
 	Map    = new(mapT.Enter)    // map工具
+	Slice  = new(slice.Enter)   // 切片工具
 	Crypto = new(crypto.Enter)  // 加密工具
 	Gin    = new(ginT.Enter)    // gin工具
 	Json   = new(jsonT.Enter)   // json工具

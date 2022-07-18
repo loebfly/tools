@@ -169,6 +169,16 @@ func TestMap(t *testing.T) {
 	fmt.Println("Merge Ints:", intRes)
 }
 
+func TestSlice(t *testing.T) {
+	slice := tools.Slice
+	strings := slice.Merge.Strings([]string{"a", "b"}, []string{"c", "d"})
+	fmt.Println("Merge Strings:", strings)
+	interfaces := slice.Merge.Interfaces([]interface{}{1.1, 2.2}, []interface{}{3.3, 4.4})
+	fmt.Println("Merge Interfaces:", interfaces)
+	ints := slice.Merge.Ints([]int{1, 2}, []int{3, 4})
+	fmt.Println("Merge Ints:", ints)
+}
+
 func TestGin(t *testing.T) {
 	ctx := gin.Context{}
 	params := tools.Gin.GetParams(&ctx)
