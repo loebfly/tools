@@ -1,6 +1,9 @@
 package stringT
 
-import "regexp"
+import (
+	"regexp"
+	"unicode"
+)
 
 type verifyString struct{}
 
@@ -34,8 +37,8 @@ func (vs verifyString) IsURL(s string) bool {
 	return reg.MatchString(s)
 }
 
-// IsNum 判断是否是数字
-func (vs verifyString) IsNum(s string) bool {
+// IsNumber 判断是否是数字
+func (vs verifyString) IsNumber(s string) bool {
 	reg, _ := regexp.Compile(`^[0-9]+$`)
 	return reg.MatchString(s)
 }
@@ -48,8 +51,14 @@ func (vs verifyString) IsEnglish(s string) bool {
 
 // IsChinese 判断是否是中文
 func (vs verifyString) IsChinese(s string) bool {
-	reg, _ := regexp.Compile(`^[\u4e00-\u9fa5]+$`)
-	return reg.MatchString(s)
+	//reg, _ := regexp.Compile(`^[\u4e00-\u9fa5]+$`)
+	//return reg.MatchString(s)
+	for _, r := range s {
+		if unicode.Is(unicode.Han, r) {
+			return true
+		}
+	}
+	return false
 }
 
 // IsLowerCase 判断是否是小写

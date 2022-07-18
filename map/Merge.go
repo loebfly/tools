@@ -23,3 +23,14 @@ func (m Merge) Strings(maps ...map[string]string) map[string]string {
 	}
 	return result
 }
+
+// Ints 多个整数字典合并
+func (m Merge) Ints(maps ...map[string]int) map[string]int {
+	result := make(map[string]int)
+	for _, map_ := range maps {
+		for key, value := range map_ {
+			result[key] = value
+		}
+	}
+	return result
+}

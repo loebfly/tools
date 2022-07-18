@@ -5,8 +5,8 @@ import (
 	"strings"
 )
 
-// ToJsonFromObj converts obj to JSON.
-func (js Enter) ToJsonFromObj(obj interface{}) string {
+// ToJson converts obj to JSON.
+func (js Enter) ToJson(obj interface{}) string {
 	b, err := json.Marshal(obj)
 	if err != nil {
 		return "{}"
@@ -19,8 +19,8 @@ func (js Enter) ToJsonFromObj(obj interface{}) string {
 	}
 }
 
-// ToObjFromJson converts JSON to obj.
-func (js Enter) ToObjFromJson(src string, obj interface{}) bool {
+// ToObjS converts JSON to obj.
+func (js Enter) ToObjS(src string, obj interface{}) bool {
 	if src == "" {
 		return false
 	}
@@ -32,15 +32,20 @@ func (js Enter) ToObjFromJson(src string, obj interface{}) bool {
 	}
 }
 
-// ToObjFromSets converts map or slice to obj.
-func (js Enter) ToObjFromSets(src interface{}, obj interface{}) bool {
+// ToObjB converts []byte to obj.
+func (js Enter) ToObjB(src []byte, obj interface{}) bool {
 	if src == nil {
 		return false
 	}
-	jsonStr := js.ToJsonFromObj(src)
-	if jsonStr == "" {
+	jsonStr := js.ToJson(src)
+	return js.ToObjS(jsonStr, obj)
+}
+
+// ToObjI converts map or slice to JSON.
+func (js Enter) ToObjI(src interface{}, obj interface{}) bool {
+	if src == nil {
 		return false
 	}
-
-	return js.ToObjFromJson(jsonStr, obj)
+	jsonStr := js.ToJson(src)
+	return js.ToObjS(jsonStr, obj)
 }
