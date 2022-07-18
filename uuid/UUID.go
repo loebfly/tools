@@ -17,6 +17,10 @@ func (ue Enter) GetNoMinus() string {
 }
 
 // GetNoMinusWithLen 获取没有-的uuid，长度为len
-func (ue Enter) GetNoMinusWithLen(len int) string {
-	return ue.GetNoMinus()[:len]
+func (ue Enter) GetNoMinusWithLen(l int) string {
+	u := ue.GetNoMinus()
+	if len(u) > l {
+		u = u[:l]
+	}
+	return u
 }
