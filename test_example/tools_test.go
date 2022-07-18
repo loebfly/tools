@@ -2,7 +2,11 @@ package test_example
 
 import (
 	"fmt"
+	"github.com/gin-gonic/gin"
 	"github.com/loebfly/tools"
+	"github.com/loebfly/tools/sftp"
+	"github.com/pkg/sftp"
+	"golang.org/x/crypto/ssh"
 	"testing"
 )
 
@@ -75,9 +79,6 @@ func TestString(t *testing.T) {
 	res = verify.IsIDCard("420102199001020301")
 	fmt.Println("IsIDCard:", res)
 
-	res = verify.IsIP("127.0.0.1")
-	fmt.Println("IsIP:", res)
-
 	res = verify.IsEnglish("abc")
 	fmt.Println("IsEnglish:", res)
 
@@ -89,6 +90,29 @@ func TestString(t *testing.T) {
 
 	res = verify.IsUpperCase("ABC")
 	fmt.Println("IsUpperCase:", res)
+}
+
+func TestCrypto(t *testing.T) {
+	crypto := tools.Crypto
+
+	src := "loebfly"
+	encrypt := crypto.MD5.EncodeString(src)
+	fmt.Println("MD5 Encrypt:", encrypt)
+
+	encrypt = crypto.MD5.EncodeBytes([]byte(src))
+	fmt.Println("MD5 Encrypt:", encrypt)
+
+	encrypt = crypto.Base64.EncodeString(src)
+	fmt.Println("Base64 Encrypt:", encrypt)
+
+	encrypt = string(crypto.Base64.EncodeByte([]byte(src)))
+	fmt.Println("Base64 Encrypt:", encrypt)
+
+	decrypt := crypto.Base64.DecodeString(encrypt)
+	fmt.Println("Base64 Decrypt:", decrypt)
+
+	decrypt = string(crypto.Base64.DecodeByte([]byte(encrypt)))
+	fmt.Println("Base64 Decrypt:", decrypt)
 }
 
 func TestMap(t *testing.T) {
@@ -158,6 +182,12 @@ func TestMap(t *testing.T) {
 	fmt.Println("Merge Ints:", intRes)
 }
 
+func TestGin(t *testing.T) {
+	ctx := gin.Context{}
+	params := tools.Gin.GetParams(&ctx)
+	fmt.Println("params:", params)
+}
+
 func TestJson(t *testing.T) {
 	json := tools.Json
 
@@ -191,4 +221,151 @@ func TestJson(t *testing.T) {
 
 	json.ToObjI(userMap, &user2)
 	fmt.Println("ToObjI:", user2)
+}
+
+func TestFile(t *testing.T) {
+
+	selfPath := tools.File.SelfPath()
+	fmt.Println("selfPath:", selfPath)
+
+	selfDir := tools.File.SelfDir()
+	fmt.Println("selfDir:", selfDir)
+
+	src := "/Users/luchunqing/Documents/github.com/tools/test_example/tools_test.go"
+
+	basename := tools.File.GetBasename(src)
+	fmt.Println("Basename:", basename)
+
+	dir := tools.File.GetDir(src)
+	fmt.Println("Dir:", dir)
+
+	ext := tools.File.GetExt(src)
+	fmt.Println("Ext:", ext)
+
+	mTime, err := tools.File.GetMTime(src)
+	if err != nil {
+		fmt.Println("GetMTime err:", err)
+	}
+	fmt.Println("MTime:", mTime)
+
+	size, err := tools.File.GetSize(src)
+	if err != nil {
+		fmt.Println("GetSize err:", err)
+	}
+	fmt.Println("Size:", size)
+
+	isExist := tools.File.IsExist(src)
+	fmt.Println("IsExist:", isExist)
+
+	isFile := tools.File.IsFile(src)
+	fmt.Println("IsFile:", isFile)
+
+	isDir := tools.File.IsDir(src)
+	fmt.Println("IsDir:", isDir)
+
+	//contentBytes, err := tools.File.ReadBytes(src)
+	//if err != nil {
+	//	fmt.Println("ReadBytes err:", err)
+	//}
+	//fmt.Println("Content:", string(contentBytes))
+	//
+	//contentString, err := tools.File.ReadString(src)
+	//if err != nil {
+	//	fmt.Println("ReadString err:", err)
+	//}
+	//fmt.Println("Content:", contentString)
+
+	contentLines, err := tools.File.ReadLines(src)
+	if err != nil {
+		fmt.Println("ReadLines err:", err)
+	}
+	fmt.Println("Content:", contentLines)
+
+	_, err = tools.File.WriteString(dir+"/hello1.txt", "hello world")
+	if err != nil {
+		fmt.Println("WriteString err:", err)
+	}
+
+	_, err = tools.File.WriteBytes(dir+"/hello2.txt", []byte("hello world"))
+	if err != nil {
+		fmt.Println("WriteBytes err:", err)
+	}
+
+	err = tools.File.Remove(dir + "/hello1.txt")
+	if err != nil {
+		fmt.Println("Remove err:", err)
+	}
+
+	err = tools.File.Remove(dir + "/hello2.txt")
+	if err != nil {
+		fmt.Println("Remove err:", err)
+	}
+}
+
+func TestSQL(t *testing.T) {
+	sql := tools.SQL
+
+	verify, s := sql.Verify("select * from user where id = 1")
+	fmt.Println("Verify:", verify, s)
+}
+
+func TestIP(t *testing.T) {
+	ip := tools.IP
+
+	isIP := ip.IsCorrect("127.0.0.1")
+	fmt.Println("IsCorrect:", isIP)
+
+	ipStr := ip.GetLocal()
+	fmt.Println("Local:", ipStr)
+
+	isIntranet := ip.IsIntranet("127.0.0.1")
+	fmt.Println("IsIntranet:", isIntranet)
+
+	IPv4, err := ip.GetV4s()
+	if err != nil {
+		fmt.Println("GetV4s err:", err)
+	}
+	fmt.Println("IPv4:", IPv4)
+
+	isUsed := ip.IsPortUsed(10000)
+	fmt.Println("IsPortUsed:", isUsed)
+}
+
+func TestShell(t *testing.T) {
+	shell := tools.Shell
+
+	err := shell.Firewall.AddPort("8080")
+	if err != nil {
+		fmt.Println("AddPort err:", err)
+	}
+	fmt.Println("AddPort:", "8080")
+
+	err = shell.Firewall.RemovePort("8080")
+	if err != nil {
+		fmt.Println("RemovePort err:", err)
+	}
+	fmt.Println("RemovePort:", "8080")
+
+	err = shell.Nginx.Restart()
+	if err != nil {
+		return
+	}
+}
+
+func TestSFTP(t *testing.T) {
+	sftpClient, sshClient, err := tools.SFTP.Connect("user", "pwd", "127.0.0.1", 22)
+	if err != nil {
+		return
+	}
+	defer func(SFTP *sftpT.Enter, sftpClient *sftp.Client, sshClient *ssh.Client) {
+		err := SFTP.Close(sftpClient, sshClient)
+		if err != nil {
+			fmt.Println("Close err:", err)
+		}
+	}(tools.SFTP, sftpClient, sshClient)
+
+	err = tools.SFTP.UploadFile(sftpClient, "./test.txt", "/tmp/test.txt")
+	if err != nil {
+		fmt.Println("UploadFile err:", err)
+	}
 }

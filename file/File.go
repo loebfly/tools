@@ -1,10 +1,12 @@
 package fileT
 
 import (
+	"errors"
 	"io/ioutil"
 	"os"
 	"path"
 	"path/filepath"
+	"strings"
 )
 
 // SelfPath returns the absolute path of the current executable file
@@ -120,4 +122,24 @@ func (f Enter) ReadString(filePath string) (string, error) {
 		return "", err
 	}
 	return string(b), nil
+}
+
+// ReadLines reads lines from a file
+func (f Enter) ReadLines(filePath string) ([]string, error) {
+	b, err := f.ReadBytes(filePath)
+	if err != nil {
+		return nil, err
+	}
+	return strings.Split(string(b), "\n"), nil
+}
+
+// Remove removes a file or directory
+func (f Enter) Remove(path string) error {
+	if f.IsDir(path) {
+		return os.RemoveAll(path)
+	} else if f.IsFile(path) {
+		return os.Remove(path)
+	} else {
+		return errors.New("not a file or directory")
+	}
 }

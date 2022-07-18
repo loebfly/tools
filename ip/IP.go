@@ -102,8 +102,8 @@ func (Enter) IsIntranet(ip string) bool {
 	return false
 }
 
-// isPortUsed return true if port is used
-func (Enter) isPortUsed(port int) bool {
+// IsPortUsed return true if port is used
+func (Enter) IsPortUsed(port int) bool {
 	sysType := runtime.GOOS
 	var (
 		output         []byte
@@ -112,11 +112,11 @@ func (Enter) isPortUsed(port int) bool {
 	if sysType == "linux" {
 		checkStatement = fmt.Sprintf("netstat -anp | grep %d ", port)
 		output, _ = exec.Command("sh", "-c", checkStatement).CombinedOutput()
-	}
-
-	if sysType == "windows" {
+	} else if sysType == "windows" {
 		checkStatement = fmt.Sprintf("netstat -ano -p tcp | findstr %d", port)
 		output, _ = exec.Command("cmd", "/c", checkStatement).CombinedOutput()
+	} else {
+		return false
 	}
 
 	if len(output) > 0 {
