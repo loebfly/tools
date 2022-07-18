@@ -55,9 +55,9 @@ func (rc rsaCrypto) SignForBytes(data, priKey []byte) ([]byte, error) {
 		if err := recover(); err != nil {
 			switch err.(type) {
 			case runtime.Error:
-				fmt.Errorf("runtime err=%v,Check that the key or text is correct", err)
+				_ = fmt.Errorf("runtime err=%v,Check that the key or text is correct", err)
 			default:
-				fmt.Errorf("error=%v,check the cipherText ", err)
+				_ = fmt.Errorf("error=%v,check the cipherText ", err)
 			}
 		}
 	}()
@@ -76,9 +76,9 @@ func (rc rsaCrypto) VerifyForBytes(data, sign, pubKey []byte) error {
 		if err := recover(); err != nil {
 			switch err.(type) {
 			case runtime.Error:
-				fmt.Errorf("runtime err=%v,Check that the key or text is correct", err)
+				_ = fmt.Errorf("runtime err=%v,Check that the key or text is correct", err)
 			default:
-				fmt.Errorf("error=%v,check the cipherText ", err)
+				_ = fmt.Errorf("error=%v,check the cipherText ", err)
 			}
 		}
 	}()
@@ -149,9 +149,9 @@ func (rc rsaCrypto) EncryptForByte(plainText, publicKey []byte) (cipherText []by
 		if err := recover(); err != nil {
 			switch err.(type) {
 			case runtime.Error:
-				fmt.Errorf("runtime err=%v,Check that the key or text is correct", err)
+				_ = fmt.Errorf("runtime err=%v,Check that the key or text is correct", err)
 			default:
-				fmt.Errorf("error=%v,check the cipherText ", err)
+				_ = fmt.Errorf("error=%v,check the cipherText ", err)
 			}
 		}
 	}()
@@ -194,9 +194,9 @@ func (rc rsaCrypto) DecryptForBytes(cipherText, privateKey []byte) (plainText []
 		if err := recover(); err != nil {
 			switch err.(type) {
 			case runtime.Error:
-				fmt.Errorf("runtime err=%v,Check that the key or text is correct", err)
+				_ = fmt.Errorf("runtime err=%v,Check that the key or text is correct", err)
 			default:
-				fmt.Errorf("error=%v,check the cipherText ", err)
+				_ = fmt.Errorf("error=%v,check the cipherText ", err)
 			}
 		}
 	}()

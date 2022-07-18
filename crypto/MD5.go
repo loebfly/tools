@@ -42,7 +42,9 @@ func (mc md5Crypto) EncodeFile(filename string) string {
 		fmt.Println(err)
 		return ""
 	}
-	defer f.Close()
+	defer func(f *os.File) {
+		_ = f.Close()
+	}(f)
 
 	h := md5.New()         //创建 md5 句柄
 	_, err = io.Copy(h, f) //将文件内容拷贝到 md5 句柄中

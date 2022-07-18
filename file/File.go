@@ -9,8 +9,8 @@ import (
 
 // SelfPath returns the absolute path of the current executable file
 func (f Enter) SelfPath() string {
-	path, _ := filepath.Abs(os.Args[0])
-	return path
+	abs, _ := filepath.Abs(os.Args[0])
+	return abs
 }
 
 // SelfDir returns the directory of the current executable file

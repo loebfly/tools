@@ -79,7 +79,7 @@ func (fw FirewallShell) IsPortUsed(proto string, port int) bool {
 		}
 		listener, err := net.ListenUDP("udp", udpAddress)
 		if err == nil {
-			listener.Close()
+			_ = listener.Close()
 			return false
 		}
 	}
