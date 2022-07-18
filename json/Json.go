@@ -1,14 +1,12 @@
-package stringT
+package jsonT
 
 import (
 	"encoding/json"
 	"strings"
 )
 
-type jsonString struct{}
-
 // ToJsonFromObj converts obj to JSON.
-func (js jsonString) ToJsonFromObj(obj interface{}) string {
+func (js Enter) ToJsonFromObj(obj interface{}) string {
 	b, err := json.Marshal(obj)
 	if err != nil {
 		return "{}"
@@ -22,7 +20,10 @@ func (js jsonString) ToJsonFromObj(obj interface{}) string {
 }
 
 // ToObjFromJson converts JSON to obj.
-func (js jsonString) ToObjFromJson(src string, obj interface{}) bool {
+func (js Enter) ToObjFromJson(src string, obj interface{}) bool {
+	if src == "" {
+		return false
+	}
 	err := json.Unmarshal([]byte(src), &obj)
 	if err != nil {
 		return false
@@ -31,8 +32,15 @@ func (js jsonString) ToObjFromJson(src string, obj interface{}) bool {
 	}
 }
 
-// ToObjFromInterface converts map or slice to obj.
-func (js jsonString) ToObjFromInterface(src interface{}, obj interface{}) bool {
+// ToObjFromSets converts map or slice to obj.
+func (js Enter) ToObjFromSets(src interface{}, obj interface{}) bool {
+	if src == nil {
+		return false
+	}
 	jsonStr := js.ToJsonFromObj(src)
+	if jsonStr == "" {
+		return false
+	}
+
 	return js.ToObjFromJson(jsonStr, obj)
 }

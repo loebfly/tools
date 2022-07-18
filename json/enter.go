@@ -1,3 +1,3 @@
-package ginT
+package jsonT
 
 type Enter struct{}

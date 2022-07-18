@@ -1,3 +1,3 @@
-package ginT
+package fileT
 
 type Enter struct{}
