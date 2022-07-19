@@ -128,7 +128,7 @@ func (e extend) Filter(array interface{}, filter func(i interface{}) bool) []int
 }
 
 // Map 切片类型转换
-func (e extend) Map(array interface{}, transform func(i interface{}) interface{}) []interface{} {
+func (e extend) Map(array interface{}, transform func(element interface{}) interface{}) []interface{} {
 	result := make([]interface{}, 0)
 	v := reflect.ValueOf(array)
 	switch v.Kind() {

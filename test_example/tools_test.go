@@ -227,8 +227,8 @@ func TestSlice(t *testing.T) {
 	})
 	fmt.Println("Filter:", fRes)
 
-	mRes := tools.Slice.Extend.Map(src, func(i interface{}) interface{} {
-		return strconv.Itoa(int(i.(int64)))
+	mRes := tools.Slice.Extend.Map(fRes, func(element interface{}) interface{} {
+		return strconv.Itoa(int(element.(int64)))
 	})
 
 	tools.Slice.Extend.ForEach(mRes, func(element interface{}) {
