@@ -1,6 +1,6 @@
 package mapT
 
 type Enter struct {
-	Extend Extend
-	Merge  Merge
+	Extend Extend // 扩展
+	Merge  Merge  // 合并
 }
