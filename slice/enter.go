@@ -1,6 +1,7 @@
 package slice
 
 type Enter struct {
-	Merge  Merge  // 合并
-	Extend Extend // 扩展
+	Merge  merge  // 合并
+	Extend extend // 扩展
+	Conv   conv   // 转换
 }

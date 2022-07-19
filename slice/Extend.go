@@ -1,9 +1,9 @@
 package slice
 
-type Extend struct{}
+type extend struct{}
 
 // FilterEmptyS 去除字符串切片的空值
-func (e Extend) FilterEmptyS(list []string) []string {
+func (e extend) FilterEmptyS(list []string) []string {
 	result := make([]string, 0)
 	for _, value := range list {
 		if value != "" {
@@ -14,7 +14,7 @@ func (e Extend) FilterEmptyS(list []string) []string {
 }
 
 // FilterEmptyI 去除interface切片的空值
-func (e Extend) FilterEmptyI(list []interface{}) []interface{} {
+func (e extend) FilterEmptyI(list []interface{}) []interface{} {
 	result := make([]interface{}, 0)
 	for _, value := range list {
 		if str, ok := value.(string); ok && str != "" {
@@ -27,7 +27,7 @@ func (e Extend) FilterEmptyI(list []interface{}) []interface{} {
 }
 
 // InS 判断字符串是否在字符串切片中
-func (e Extend) InS(list []string, value string) bool {
+func (e extend) InS(list []string, value string) bool {
 	for _, v := range list {
 		if v == value {
 			return true
@@ -37,7 +37,7 @@ func (e Extend) InS(list []string, value string) bool {
 }
 
 // InI 判断interface是否在interface切片中
-func (e Extend) InI(list []interface{}, value interface{}) bool {
+func (e extend) InI(list []interface{}, value interface{}) bool {
 	for _, v := range list {
 		if v == value {
 			return true
@@ -47,7 +47,7 @@ func (e Extend) InI(list []interface{}, value interface{}) bool {
 }
 
 // UniqueS 去重字符串数组的重复值
-func (e Extend) UniqueS(list []string) []string {
+func (e extend) UniqueS(list []string) []string {
 	result := make([]string, 0)
 	for _, value := range list {
 		if !e.InS(result, value) {
@@ -58,11 +58,51 @@ func (e Extend) UniqueS(list []string) []string {
 }
 
 // UniqueI 去重interface数组的重复值
-func (e Extend) UniqueI(list []interface{}) []interface{} {
+func (e extend) UniqueI(list []interface{}) []interface{} {
 	result := make([]interface{}, 0)
 	for _, value := range list {
 		if !e.InI(result, value) {
 			result = append(result, value)
+		}
+	}
+	return result
+}
+
+// ReverseS 反转字符串切片
+func (e extend) ReverseS(list []string) []string {
+	result := make([]string, 0)
+	for i := len(list) - 1; i >= 0; i-- {
+		result = append(result, list[i])
+	}
+	return result
+}
+
+// ReverseI 反转interface切片
+func (e extend) ReverseI(list []interface{}) []interface{} {
+	result := make([]interface{}, 0)
+	for i := len(list) - 1; i >= 0; i-- {
+		result = append(result, list[i])
+	}
+	return result
+}
+
+// RemoveS 删除字符串切片中的某个值
+func (e extend) RemoveS(list []string, value string) []string {
+	result := make([]string, 0)
+	for _, v := range list {
+		if v != value {
+			result = append(result, v)
+		}
+	}
+	return result
+}
+
+// RemoveI 删除interface切片中的某个值
+func (e extend) RemoveI(list []interface{}, value interface{}) []interface{} {
+	result := make([]interface{}, 0)
+	for _, v := range list {
+		if v != value {
+			result = append(result, v)
 		}
 	}
 	return result
