@@ -6,22 +6,22 @@ import (
 	"strings"
 )
 
-type Extend struct{}
+type extend struct{}
 
 // IsExistS 判断key是否存在
-func (e Extend) IsExistS(p map[string]string, k string) bool {
+func (e extend) IsExistS(p map[string]string, k string) bool {
 	_, ok := p[k]
 	return ok
 }
 
 // IsExistI 判断key是否存在
-func (e Extend) IsExistI(p map[string]interface{}, k string) bool {
+func (e extend) IsExistI(p map[string]interface{}, k string) bool {
 	_, ok := p[k]
 	return ok
 }
 
 // IsEmptyS 判断是否为空
-func (e Extend) IsEmptyS(p map[string]string, k string) bool {
+func (e extend) IsEmptyS(p map[string]string, k string) bool {
 	if e.IsExistS(p, k) {
 		return p[k] == ""
 	}
@@ -29,7 +29,7 @@ func (e Extend) IsEmptyS(p map[string]string, k string) bool {
 }
 
 // IsEmptyI 判断是否为空
-func (e Extend) IsEmptyI(p map[string]interface{}, k string) bool {
+func (e extend) IsEmptyI(p map[string]interface{}, k string) bool {
 	if e.IsExistI(p, k) {
 		return p[k] == ""
 	}
@@ -37,7 +37,7 @@ func (e Extend) IsEmptyI(p map[string]interface{}, k string) bool {
 }
 
 // GetKeysS 获取所有key
-func (e Extend) GetKeysS(p map[string]string) []string {
+func (e extend) GetKeysS(p map[string]string) []string {
 	var keys = make([]string, 0)
 	for k := range p {
 		keys = append(keys, k)
@@ -46,7 +46,7 @@ func (e Extend) GetKeysS(p map[string]string) []string {
 }
 
 // GetKeysI 获取所有key
-func (e Extend) GetKeysI(p map[string]interface{}) []string {
+func (e extend) GetKeysI(p map[string]interface{}) []string {
 	var keys = make([]string, 0)
 	for k := range p {
 		keys = append(keys, k)
@@ -55,7 +55,7 @@ func (e Extend) GetKeysI(p map[string]interface{}) []string {
 }
 
 // GetValuesS 获取所有value
-func (e Extend) GetValuesS(p map[string]string) []string {
+func (e extend) GetValuesS(p map[string]string) []string {
 	var values = make([]string, 0)
 	for _, v := range p {
 		values = append(values, v)
@@ -64,7 +64,7 @@ func (e Extend) GetValuesS(p map[string]string) []string {
 }
 
 // GetValuesI 获取所有value
-func (e Extend) GetValuesI(p map[string]interface{}) []interface{} {
+func (e extend) GetValuesI(p map[string]interface{}) []interface{} {
 	var values = make([]interface{}, 0)
 	for _, v := range p {
 		values = append(values, v)
@@ -73,7 +73,7 @@ func (e Extend) GetValuesI(p map[string]interface{}) []interface{} {
 }
 
 // ToJsonFromMapI 字典转Json
-func (e Extend) ToJsonFromMapI(p map[string]interface{}) string {
+func (e extend) ToJsonFromMapI(p map[string]interface{}) string {
 	jsonStr, err := json.Marshal(p)
 	if err != nil {
 		return ""
@@ -82,7 +82,7 @@ func (e Extend) ToJsonFromMapI(p map[string]interface{}) string {
 }
 
 // ToJsonFromMapS 字典转Json
-func (e Extend) ToJsonFromMapS(p map[string]string) string {
+func (e extend) ToJsonFromMapS(p map[string]string) string {
 	jsonStr, err := json.Marshal(p)
 	if err != nil {
 		return ""
@@ -91,7 +91,7 @@ func (e Extend) ToJsonFromMapS(p map[string]string) string {
 }
 
 // ToMapIFromObj 结构体转字典
-func (e Extend) ToMapIFromObj(obj interface{}) map[string]interface{} {
+func (e extend) ToMapIFromObj(obj interface{}) map[string]interface{} {
 	obj1 := reflect.TypeOf(obj)
 	obj2 := reflect.ValueOf(obj)
 

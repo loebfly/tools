@@ -1,9 +1,9 @@
 package mapT
 
-type Merge struct{}
+type merge struct{}
 
 // Interfaces 多个字典合并
-func (m Merge) Interfaces(maps ...map[string]interface{}) map[string]interface{} {
+func (m merge) Interfaces(maps ...map[string]interface{}) map[string]interface{} {
 	result := make(map[string]interface{})
 	for _, map_ := range maps {
 		for key, value := range map_ {
@@ -14,7 +14,7 @@ func (m Merge) Interfaces(maps ...map[string]interface{}) map[string]interface{}
 }
 
 // Strings 多个字符串字典合并
-func (m Merge) Strings(maps ...map[string]string) map[string]string {
+func (m merge) Strings(maps ...map[string]string) map[string]string {
 	result := make(map[string]string)
 	for _, map_ := range maps {
 		for key, value := range map_ {
@@ -25,7 +25,7 @@ func (m Merge) Strings(maps ...map[string]string) map[string]string {
 }
 
 // Ints 多个整数字典合并
-func (m Merge) Ints(maps ...map[string]int) map[string]int {
+func (m merge) Ints(maps ...map[string]int) map[string]int {
 	result := make(map[string]int)
 	for _, map_ := range maps {
 		for key, value := range map_ {
