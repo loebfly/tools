@@ -101,19 +101,19 @@ func TestString(t *testing.T) {
 	s := "你好，世界！"
 	extend := tools.String.Extend
 	//从索引2开始，截取长度为3
-	sub := extend.Substring(s, 2, 3)
+	sub := extend.Sub(s, 2, 3)
 	fmt.Println("Substring:", sub)
 
 	//从索引2开始，截取到最后
-	sub = extend.Substring(s, 2)
+	sub = extend.Sub(s, 2)
 	fmt.Println("Substring:", sub)
 
 	//从索引-1开始，截取到最后
-	sub = extend.Substring(s, -1)
+	sub = extend.Sub(s, -1)
 	fmt.Println("Substring:", sub)
 
 	//截取最后3个字符
-	sub = extend.Substring(s, -3)
+	sub = extend.Sub(s, -3)
 	fmt.Println("Substring:", sub)
 
 	fmt.Println("len:", len(s))
