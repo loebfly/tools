@@ -156,16 +156,16 @@ func TestMap(t *testing.T) {
 		"age":  18,
 	}
 
-	isExist := extend.IsExistI(srcIMap, "name")
+	isExist := extend.IsExist(srcIMap, "name")
 	fmt.Println("interface map isExist:", isExist)
 
-	isEmpty := extend.IsEmptyI(srcIMap, "name")
+	isEmpty := extend.IsEmptyV(srcIMap, "name")
 	fmt.Println("interface map isEmpty:", isEmpty)
 
-	keys := extend.GetKeysI(srcIMap)
+	keys := extend.GetKeys(srcIMap)
 	fmt.Println("interface map keys:", keys)
 
-	iValues := extend.GetValuesI(srcIMap)
+	iValues := extend.GetValues(srcIMap)
 	fmt.Println("interface map values:", iValues)
 
 	iJson := extend.ToJsonFromMapI(srcIMap)
@@ -176,16 +176,16 @@ func TestMap(t *testing.T) {
 		"age":  "18",
 	}
 
-	isExist = extend.IsExistS(srcSMap, "name")
+	isExist = extend.IsExist(srcSMap, "name")
 	fmt.Println("string map isExist:", isExist)
 
-	isEmpty = extend.IsEmptyS(srcSMap, "name")
+	isEmpty = extend.IsEmptyV(srcSMap, "name")
 	fmt.Println("string map isEmpty:", isEmpty)
 
-	keys = extend.GetKeysS(srcSMap)
+	keys = extend.GetKeys(srcSMap)
 	fmt.Println("string map keys:", keys)
 
-	sValues := extend.GetValuesS(srcSMap)
+	sValues := extend.GetValues(srcSMap)
 	fmt.Println("string map values:", sValues)
 
 	sJson := extend.ToJsonFromMapS(srcSMap)
@@ -208,6 +208,20 @@ func TestMap(t *testing.T) {
 
 	intRes := merge.Ints(map[string]int{"a": 1, "b": 2}, map[string]int{"c": 3, "d": 4})
 	fmt.Println("Merge Ints:", intRes)
+
+	tools.Map.Extend.ForEach(map[string]interface{}{"a": 1, "b": 2}, func(key string, value interface{}) {
+		fmt.Println("key-value:", key, value)
+	})
+
+	fRes := tools.Map.Extend.Filter(map[string]interface{}{"a": 1, "b": 2}, func(key string, value interface{}) bool {
+		return key == "a"
+	})
+	fmt.Println("Filter:", fRes)
+
+	mRes := tools.Map.Extend.MapValue(map[string]interface{}{"a": 1, "b": 2}, func(key string, value interface{}) interface{} {
+		return value.(int) * 2
+	})
+	fmt.Println("MapValue:", mRes)
 }
 
 func TestSlice(t *testing.T) {

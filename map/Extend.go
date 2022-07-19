@@ -8,68 +8,58 @@ import (
 
 type extend struct{}
 
-// IsExistS 判断key是否存在
-func (e extend) IsExistS(p map[string]string, k string) bool {
-	_, ok := p[k]
-	return ok
-}
-
-// IsExistI 判断key是否存在
-func (e extend) IsExistI(p map[string]interface{}, k string) bool {
-	_, ok := p[k]
-	return ok
-}
-
-// IsEmptyS 判断是否为空
-func (e extend) IsEmptyS(p map[string]string, k string) bool {
-	if e.IsExistS(p, k) {
-		return p[k] == ""
+// IsExist 判断key是否存在
+func (e extend) IsExist(p interface{}, k string) bool {
+	v := reflect.ValueOf(p)
+	switch v.Kind() {
+	case reflect.Map:
+		_, ok := v.MapIndex(reflect.ValueOf(k)).Interface().(string)
+		return ok
+	default:
+		return false
 	}
-	return true
 }
 
-// IsEmptyI 判断是否为空
-func (e extend) IsEmptyI(p map[string]interface{}, k string) bool {
-	if e.IsExistI(p, k) {
-		return p[k] == ""
+// IsEmptyV 判断值是否为空
+func (e extend) IsEmptyV(p interface{}, k string) bool {
+	v := reflect.ValueOf(p)
+	switch v.Kind() {
+	case reflect.Map:
+		val := v.MapIndex(reflect.ValueOf(k)).Interface()
+		return val == "" || val == nil
+	default:
+		return false
 	}
-	return true
 }
 
-// GetKeysS 获取所有key
-func (e extend) GetKeysS(p map[string]string) []string {
+// GetKeys 获取所有key
+func (e extend) GetKeys(p interface{}) []string {
 	var keys = make([]string, 0)
-	for k := range p {
-		keys = append(keys, k)
+	v := reflect.ValueOf(p)
+	switch v.Kind() {
+	case reflect.Map:
+		for _, k := range v.MapKeys() {
+			keys = append(keys, k.String())
+		}
+		return keys
+	default:
+		return keys
 	}
-	return keys
 }
 
-// GetKeysI 获取所有key
-func (e extend) GetKeysI(p map[string]interface{}) []string {
-	var keys = make([]string, 0)
-	for k := range p {
-		keys = append(keys, k)
-	}
-	return keys
-}
-
-// GetValuesS 获取所有value
-func (e extend) GetValuesS(p map[string]string) []string {
-	var values = make([]string, 0)
-	for _, v := range p {
-		values = append(values, v)
-	}
-	return values
-}
-
-// GetValuesI 获取所有value
-func (e extend) GetValuesI(p map[string]interface{}) []interface{} {
+// GetValues 获取所有value
+func (e extend) GetValues(p interface{}) []interface{} {
 	var values = make([]interface{}, 0)
-	for _, v := range p {
-		values = append(values, v)
+	v := reflect.ValueOf(p)
+	switch v.Kind() {
+	case reflect.Map:
+		for _, k := range v.MapKeys() {
+			values = append(values, v.MapIndex(k).Interface())
+		}
+		return values
+	default:
+		return values
 	}
-	return values
 }
 
 // ToJsonFromMapI 字典转Json
