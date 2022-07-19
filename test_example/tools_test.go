@@ -7,6 +7,7 @@ import (
 	"github.com/loebfly/tools/sftp"
 	"github.com/pkg/sftp"
 	"golang.org/x/crypto/ssh"
+	"strconv"
 	"testing"
 	"time"
 )
@@ -217,6 +218,25 @@ func TestSlice(t *testing.T) {
 	fmt.Println("Merge Interfaces:", interfaces)
 	ints := slice.Merge.Ints([]int{1, 2}, []int{3, 4})
 	fmt.Println("Merge Ints:", ints)
+
+	src := []int64{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+	fmt.Println("src:", src)
+
+	fRes := tools.Slice.Extend.Filter(src, func(i interface{}) bool {
+		return i.(int64)%2 == 0
+	})
+	fmt.Println("Filter:", fRes)
+
+	mRes := tools.Slice.Extend.Map(src, func(i interface{}) interface{} {
+		return strconv.Itoa(int(i.(int64)))
+	})
+
+	tools.Slice.Extend.ForEach(mRes, func(element interface{}) {
+		fmt.Printf("ForEach: element type: %T", element)
+		fmt.Print("\n")
+		fmt.Printf("ForEach: element value: %v", element)
+		fmt.Print("\n")
+	})
 }
 
 func TestGin(t *testing.T) {

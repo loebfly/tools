@@ -215,7 +215,7 @@ func (conv convString) String(iFace interface{}) string {
 		return strconv.FormatFloat(v.Float(), 'f', -1, 64)
 	case reflect.Float32:
 		return strconv.FormatFloat(v.Float(), 'f', -1, 32)
-	case reflect.Ptr, reflect.Struct, reflect.Map, reflect.Array:
+	case reflect.Ptr, reflect.Struct, reflect.Map, reflect.Array, reflect.Slice:
 		b, err := json.Marshal(v.Interface())
 		if err != nil {
 			return ""
