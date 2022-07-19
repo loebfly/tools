@@ -4,11 +4,11 @@ import "strings"
 
 type extendString struct{}
 
-// Substring 以char的方式进行字符串截取
+// Sub 以char的方式进行字符串截取
 // start:开始位置，strLength:截取长度
 // 如果 start < 0, 则从字符串末尾开始计算
 // 如果 strLength <= 0, 则截取到字符串末尾
-func (es extendString) Substring(src string, start int, length ...int) string {
+func (es extendString) Sub(src string, start int, length ...int) string {
 	charList := []rune(src)
 	l := len(charList)
 	step := 0
