@@ -1,5 +1,7 @@
 package stringT
 
+import "strings"
+
 type extendString struct{}
 
 // Substring 以char的方式进行字符串截取
@@ -48,4 +50,52 @@ func (es extendString) Substring(src string, start int, length ...int) string {
 // Len 返回char字符串长度
 func (es extendString) Len(src string) int {
 	return len([]rune(src))
+}
+
+// Before 获取某个字符串第一个出现位置之前的字符串，如果不存在返回源字符串
+func (es extendString) Before(src string, target string) string {
+	if target == "" {
+		return src
+	}
+	i := strings.Index(src, target)
+	if i != -1 {
+		return src[:i]
+	}
+	return src
+}
+
+// BeforeLast 获取某个字符串最后出现位置之前的字符串，如果不存在返回源字符串
+func (es extendString) BeforeLast(src string, target string) string {
+	if target == "" {
+		return src
+	}
+	i := strings.LastIndex(src, target)
+	if i != -1 {
+		return src[:i]
+	}
+	return src
+}
+
+// After 获取某个字符串第一个出现位置之后的字符串，如果不存在返回源字符串
+func (es extendString) After(src string, target string) string {
+	if target == "" {
+		return src
+	}
+	i := strings.Index(src, target)
+	if i != -1 {
+		return src[i+len(target):]
+	}
+	return src
+}
+
+// AfterLast 获取某个字符串最后出现位置之后的字符串，如果不存在返回源字符串
+func (es extendString) AfterLast(src string, target string) string {
+	if target == "" {
+		return src
+	}
+	i := strings.LastIndex(src, target)
+	if i != -1 {
+		return src[i+len(target):]
+	}
+	return src
 }
