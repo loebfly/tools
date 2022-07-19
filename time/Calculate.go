@@ -108,50 +108,35 @@ func (tc timeCalculate) GetMonth(t time.Time) int {
 
 // GetYear 获取年份
 func (tc timeCalculate) GetYear(t time.Time) int {
-	return int(t.Year())
+	return t.Year()
 }
 
-// GetTimeUnixMillisecond 获取时间戳毫秒数
-func (tc timeCalculate) GetTimeUnixMillisecond(t time.Time) int {
-	return int(t.UnixNano() / 1000000)
+// GetUnixSecond 获取时间戳秒数
+func (tc timeCalculate) GetUnixSecond(unix int64) int64 {
+	return unix
 }
 
-// GetTimeUnixMicrosecond 获取时间戳微秒数
-func (tc timeCalculate) GetTimeUnixMicrosecond(t time.Time) int {
-	return int(t.UnixNano() / 1000)
+// GetUnixMinute 获取时间戳分钟数
+func (tc timeCalculate) GetUnixMinute(unix int64) int64 {
+	return unix / 60
 }
 
-// GetTimeUnixNanosecond 获取时间戳纳秒数
-func (tc timeCalculate) GetTimeUnixNanosecond(t time.Time) int {
-	return int(t.UnixNano())
+// GetUnixHour 获取时间戳小时数
+func (tc timeCalculate) GetUnixHour(unix int64) int64 {
+	return unix / 3600
 }
 
-// GetTimeUnixSecond 获取时间戳秒数
-func (tc timeCalculate) GetTimeUnixSecond(t time.Time) int {
-	return int(t.Unix())
+// GetUnixDay 获取时间戳天数
+func (tc timeCalculate) GetUnixDay(unix int64) int64 {
+	return unix / 86400
 }
 
-// GetTimeUnixMinute 获取时间戳分钟数
-func (tc timeCalculate) GetTimeUnixMinute(t time.Time) int {
-	return int(t.Unix() / 60)
+// GetUnixMonth 获取时间戳月数
+func (tc timeCalculate) GetUnixMonth(unix int64) int64 {
+	return unix / 2592000
 }
 
-// GetTimeUnixHour 获取时间戳小时数
-func (tc timeCalculate) GetTimeUnixHour(t time.Time) int {
-	return int(t.Unix() / 3600)
-}
-
-// GetTimeUnixDay 获取时间戳天数
-func (tc timeCalculate) GetTimeUnixDay(t time.Time) int {
-	return int(t.Unix() / 86400)
-}
-
-// GetTimeUnixMonth 获取时间戳月数
-func (tc timeCalculate) GetTimeUnixMonth(t time.Time) int {
-	return int(t.Unix() / 2592000)
-}
-
-// GetTimeUnixYear 获取时间戳年数
-func (tc timeCalculate) GetTimeUnixYear(t time.Time) int {
-	return int(t.Unix() / 31536000)
+// GetUnixYear 获取时间戳年数
+func (tc timeCalculate) GetUnixYear(unix int64) int64 {
+	return unix / 31536000
 }
