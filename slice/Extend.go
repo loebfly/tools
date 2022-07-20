@@ -70,7 +70,7 @@ func (e extend) Remove(array interface{}, value interface{}) []interface{} {
 }
 
 // Filter 切片过滤
-func (e extend) Filter(array interface{}, filter func(i interface{}) bool) []interface{} {
+func (e extend) Filter(array interface{}, filter func(element interface{}) bool) []interface{} {
 	result := make([]interface{}, 0)
 	v := reflect.ValueOf(array)
 	switch v.Kind() {
