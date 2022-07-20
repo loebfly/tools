@@ -168,9 +168,6 @@ func TestMap(t *testing.T) {
 	iValues := extend.GetValues(srcIMap)
 	fmt.Println("interface map values:", iValues)
 
-	iJson := extend.ToJsonFromMapI(srcIMap)
-	fmt.Println("interface map json:", iJson)
-
 	srcSMap := map[string]string{
 		"name": "loebfly",
 		"age":  "18",
@@ -187,17 +184,6 @@ func TestMap(t *testing.T) {
 
 	sValues := extend.GetValues(srcSMap)
 	fmt.Println("string map values:", sValues)
-
-	sJson := extend.ToJsonFromMapS(srcSMap)
-	fmt.Println("string map json:", sJson)
-
-	user := User{
-		Name: "loebfly",
-		Age:  18,
-	}
-
-	obj := extend.ToMapIFromObj(user)
-	fmt.Println("object map:", obj)
 
 	merge := tools.Map.Merge
 	stringRes := merge.Strings(map[string]string{"a": "1", "b": "2"}, map[string]string{"c": "3", "d": "4"})
