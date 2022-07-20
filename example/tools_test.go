@@ -494,15 +494,18 @@ func TestTime(t *testing.T) {
 func TestUUID(t *testing.T) {
 	uuid := tools.UUID
 
-	uuidStr := uuid.Get(false)
+	uuidStr := uuid.NewV1(false)
 	fmt.Println("Get:", uuidStr)
 
-	uuidStr = uuid.Get(true)
+	uuidStr = uuid.NewV1(true)
 	fmt.Println("Get:", uuidStr)
 
-	uuidStr = uuid.GetV4(false)
+	uuidStr = uuid.NewV4(false)
 	fmt.Println("GetV4:", uuidStr)
 
-	uuidStr = uuid.GetV4(true)
+	uuidStr = uuid.NewV4(true)
 	fmt.Println("GetV4:", uuidStr)
+
+	uuidStr = uuid.New()
+	fmt.Println("Get:", uuidStr)
 }
