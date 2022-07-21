@@ -7,48 +7,46 @@ import (
 	"time"
 )
 
-type timeFmt struct{}
-
 // LayoutDateTime 返回日期时间格式
-func (tf timeFmt) LayoutDateTime() string {
+func (tFmt Enter) LayoutDateTime() string {
 	return "2006-01-02 15:04:05"
 }
 
 // LayoutDate 返回日期格式
-func (tf timeFmt) LayoutDate() string {
+func (tFmt Enter) LayoutDate() string {
 	return "2006-01-02"
 }
 
 // LayoutTime 返回时间格式
-func (tf timeFmt) LayoutTime() string {
+func (tFmt Enter) LayoutTime() string {
 	return "15:04:05"
 }
 
-func (tf timeFmt) CTSZone() *time.Location {
+func (tFmt Enter) CTSZone() *time.Location {
 	return time.FixedZone("CST", 8*3600)
 }
 
 // GetNowDateTime 获取当前日期时间字符串
-func (tf timeFmt) GetNowDateTime() string {
-	return time.Now().In(tf.CTSZone()).Format(tf.LayoutDateTime())
+func (tFmt Enter) GetNowDateTime() string {
+	return time.Now().In(tFmt.CTSZone()).Format(tFmt.LayoutDateTime())
 }
 
 // GetNowDate 获取当前日期字符串
-func (tf timeFmt) GetNowDate() string {
-	return time.Now().In(tf.CTSZone()).Format(tf.LayoutDate())
+func (tFmt Enter) GetNowDate() string {
+	return time.Now().In(tFmt.CTSZone()).Format(tFmt.LayoutDate())
 }
 
 // GetNowTime 获取当前时间字符串
-func (tf timeFmt) GetNowTime() string {
-	return time.Now().In(tf.CTSZone()).Format(tf.LayoutTime())
+func (tFmt Enter) GetNowTime() string {
+	return time.Now().In(tFmt.CTSZone()).Format(tFmt.LayoutTime())
 }
 
 // GetNowWeekday 获取当前星期字符串
-func (tf timeFmt) GetNowWeekday() string {
-	return time.Now().In(tf.CTSZone()).Weekday().String()
+func (tFmt Enter) GetNowWeekday() string {
+	return time.Now().In(tFmt.CTSZone()).Weekday().String()
 }
 
-// Get 以任意格式获取日期时间字符串
+// Format 以任意格式获取日期时间字符串
 // MMMM - month - January
 // MMM - month - Jan
 // MM - month - 01
@@ -65,7 +63,7 @@ func (tf timeFmt) GetNowWeekday() string {
 // m - minute - 4
 // ss - second - 05
 // s - second = 5
-func (tf timeFmt) Get(t time.Time, format string) string {
+func (tFmt Enter) Format(t time.Time, format string) string {
 	newFmt := strings.Replace(format, "MMMM", "January", -1)
 	newFmt = strings.Replace(newFmt, "MMM", "Jan", -1)
 	newFmt = strings.Replace(newFmt, "MM", "01", -1)
@@ -90,11 +88,11 @@ func (tf timeFmt) Get(t time.Time, format string) string {
 }
 
 // Convert 日期时间字符串转换为指定格式的日期时间字符串
-func (tf timeFmt) Convert(timeString string, format string) string {
+func (tFmt Enter) Convert(timeString string, format string) string {
 	t, err := dateparse.ParseLocal(timeString)
 	if err != nil {
 		fmt.Println("ParseLocal error:", err.Error())
 		return ""
 	}
-	return tf.Get(t, format)
+	return tFmt.Format(t, format)
 }

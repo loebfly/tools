@@ -423,52 +423,52 @@ func TestSFTP(t *testing.T) {
 }
 
 func TestTime(t *testing.T) {
-	timeStr := tools.Time.Fmt.GetNowDateTime()
+	timeStr := tools.Time.GetNowDateTime()
 	fmt.Println("GetNowDateTime:", timeStr)
 
-	timeStr = tools.Time.Fmt.GetNowDate()
+	timeStr = tools.Time.GetNowDate()
 	fmt.Println("GetNowDate:", timeStr)
 
-	timeStr = tools.Time.Fmt.GetNowTime()
+	timeStr = tools.Time.GetNowTime()
 	fmt.Println("GetNowTime:", timeStr)
 
-	timeStr = tools.Time.Fmt.GetNowWeekday()
+	timeStr = tools.Time.GetNowWeekday()
 	fmt.Println("GetNowWeekday:", timeStr)
 
-	timeStr = tools.Time.Fmt.Convert("2018-01-01 00:00:00", "yyyy-MM-dd")
+	timeStr = tools.Time.Convert("2018-01-01 00:00:00", "yyyy-MM-dd")
 	fmt.Println("Convert:", timeStr)
 
-	timeStr = tools.Time.Fmt.Get(time.Now(), "2006-01-02 15:04:05")
+	timeStr = tools.Time.Format(time.Now(), "2006-01-02 15:04:05")
 	fmt.Println("Get:", timeStr)
 
-	timeStr = tools.Time.Fmt.Get(time.Now(), "yyyy-MM-dd HH:mm:ss")
+	timeStr = tools.Time.Format(time.Now(), "yyyy-MM-dd HH:mm:ss")
 	fmt.Println("Get:", timeStr)
 
-	timeStr = tools.Time.Fmt.Get(time.Now(), "yyyy-MM-dd HH:mm")
+	timeStr = tools.Time.Format(time.Now(), "yyyy-MM-dd HH:mm")
 	fmt.Println("Get:", timeStr)
 
-	timeStr = tools.Time.Fmt.Get(time.Now(), "yyyy-MM-dd HH")
+	timeStr = tools.Time.Format(time.Now(), "yyyy-MM-dd HH")
 	fmt.Println("Get:", timeStr)
 
-	timeStr = tools.Time.Fmt.Get(time.Now(), "yyyy-MM-dd")
+	timeStr = tools.Time.Format(time.Now(), "yyyy-MM-dd")
 	fmt.Println("Get:", timeStr)
 
-	timeStr = tools.Time.Fmt.Get(time.Now(), "yyyy-MM")
+	timeStr = tools.Time.Format(time.Now(), "yyyy-MM")
 	fmt.Println("Get:", timeStr)
 
-	timeStr = tools.Time.Fmt.Get(time.Now(), "yyyy")
+	timeStr = tools.Time.Format(time.Now(), "yyyy")
 	fmt.Println("Get:", timeStr)
 
-	timeStr = tools.Time.Fmt.Get(time.Now(), "MMMM")
+	timeStr = tools.Time.Format(time.Now(), "MMMM")
 	fmt.Println("Get:", timeStr)
 
-	timeStr = tools.Time.Fmt.Get(time.Now(), "MMM")
+	timeStr = tools.Time.Format(time.Now(), "MMM")
 	fmt.Println("Get:", timeStr)
 
-	timeStr = tools.Time.Fmt.Get(time.Now(), "MM")
+	timeStr = tools.Time.Format(time.Now(), "MM")
 	fmt.Println("Get:", timeStr)
 
-	timeStr = tools.Time.Fmt.Get(time.Now(), "M")
+	timeStr = tools.Time.Format(time.Now(), "M")
 	fmt.Println("Get:", timeStr)
 }
 
