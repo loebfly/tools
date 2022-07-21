@@ -2,13 +2,11 @@ package stringT
 
 import "strings"
 
-type extendString struct{}
-
 // Sub 以char的方式进行字符串截取
 // start:开始位置，strLength:截取长度
 // 如果 start < 0, 则从字符串末尾开始计算
 // 如果 strLength <= 0, 则截取到字符串末尾
-func (es extendString) Sub(src string, start int, length ...int) string {
+func (e Enter) Sub(src string, start int, length ...int) string {
 	charList := []rune(src)
 	l := len(charList)
 	step := 0
@@ -48,12 +46,12 @@ func (es extendString) Sub(src string, start int, length ...int) string {
 }
 
 // Len 返回char字符串长度
-func (es extendString) Len(src string) int {
+func (e Enter) Len(src string) int {
 	return len([]rune(src))
 }
 
 // Before 获取某个字符串第一个出现位置之前的字符串，如果不存在返回源字符串
-func (es extendString) Before(src string, target string) string {
+func (e Enter) Before(src string, target string) string {
 	if target == "" {
 		return src
 	}
@@ -65,7 +63,7 @@ func (es extendString) Before(src string, target string) string {
 }
 
 // BeforeLast 获取某个字符串最后出现位置之前的字符串，如果不存在返回源字符串
-func (es extendString) BeforeLast(src string, target string) string {
+func (e Enter) BeforeLast(src string, target string) string {
 	if target == "" {
 		return src
 	}
@@ -77,7 +75,7 @@ func (es extendString) BeforeLast(src string, target string) string {
 }
 
 // After 获取某个字符串第一个出现位置之后的字符串，如果不存在返回源字符串
-func (es extendString) After(src string, target string) string {
+func (e Enter) After(src string, target string) string {
 	if target == "" {
 		return src
 	}
@@ -89,7 +87,7 @@ func (es extendString) After(src string, target string) string {
 }
 
 // AfterLast 获取某个字符串最后出现位置之后的字符串，如果不存在返回源字符串
-func (es extendString) AfterLast(src string, target string) string {
+func (e Enter) AfterLast(src string, target string) string {
 	if target == "" {
 		return src
 	}

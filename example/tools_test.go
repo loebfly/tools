@@ -54,7 +54,7 @@ func TestMath(t *testing.T) {
 }
 
 func TestString(t *testing.T) {
-	verify := tools.String.Verify
+	verify := tools.String
 	res := verify.IsEmail("abc@example.com")
 	fmt.Println("IsEmail:", res)
 
@@ -95,11 +95,11 @@ func TestString(t *testing.T) {
 	}
 
 	for _, v := range val {
-		fmt.Println(tools.String.Conv.String(v))
+		fmt.Println(tools.String.ConvToString(v))
 	}
 
 	s := "你好，世界！"
-	extend := tools.String.Extend
+	extend := tools.String
 	//从索引2开始，截取长度为3
 	sub := extend.Sub(s, 2, 3)
 	fmt.Println("Substring:", sub)
@@ -145,11 +145,6 @@ func TestCrypto(t *testing.T) {
 
 func TestMap(t *testing.T) {
 	extend := tools.Map.Extend
-
-	type User struct {
-		Name string `json:"name"`
-		Age  int    `json:"age"`
-	}
 
 	srcIMap := map[string]interface{}{
 		"name": "loebfly",

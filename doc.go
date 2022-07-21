@@ -5,9 +5,7 @@
 			.Condition 条件判断
 			.Random   随机数
 		tools.String 字符串
-			.Verify 验证
-			.Conv 转换
-			.Extend 扩展
+			无子包，直接使用
 		tools.Map 字典
 			.Extend 扩展
 			.Merge 合并
