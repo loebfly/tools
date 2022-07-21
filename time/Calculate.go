@@ -112,61 +112,61 @@ func (tc timeCalculate) GetYear(t time.Time) int {
 }
 
 // GetUnixSecond 获取时间戳秒数
-func (tc timeCalculate) GetUnixSecond(unix int64) int64 {
-	return unix
+func (tc timeCalculate) GetUnixSecond(unix int64) int {
+	return int(unix)
 }
 
 // GetUnixMinute 获取时间戳分钟数
-func (tc timeCalculate) GetUnixMinute(unix int64) int64 {
-	return unix / 60
+func (tc timeCalculate) GetUnixMinute(unix int64) int {
+	return int(unix / 60)
 }
 
 // GetUnixHour 获取时间戳小时数
-func (tc timeCalculate) GetUnixHour(unix int64) int64 {
-	return unix / 3600
+func (tc timeCalculate) GetUnixHour(unix int64) int {
+	return int(unix / 3600)
 }
 
 // GetUnixDay 获取时间戳天数
-func (tc timeCalculate) GetUnixDay(unix int64) int64 {
-	return unix / 86400
+func (tc timeCalculate) GetUnixDay(unix int64) int {
+	return int(unix / 86400)
 }
 
 // GetUnixMonth 获取时间戳月数
-func (tc timeCalculate) GetUnixMonth(unix int64) int64 {
-	return unix / 2592000
+func (tc timeCalculate) GetUnixMonth(unix int64) int {
+	return int(unix / 2592000)
 }
 
 // GetUnixYear 获取时间戳年数
-func (tc timeCalculate) GetUnixYear(unix int64) int64 {
-	return unix / 31536000
+func (tc timeCalculate) GetUnixYear(unix int64) int {
+	return int(unix / 31536000)
 }
 
 // DiffSeconds 计算两个时间差秒数
-func (tc timeCalculate) DiffSeconds(start, end time.Time) int64 {
-	return end.Unix() - start.Unix()
+func (tc timeCalculate) DiffSeconds(start, end time.Time) int {
+	return int(end.Unix() - start.Unix())
 }
 
 // DiffMinutes 计算两个时间差分钟数
-func (tc timeCalculate) DiffMinutes(start, end time.Time) int64 {
-	return end.Unix()/60 - start.Unix()/60
+func (tc timeCalculate) DiffMinutes(start, end time.Time) int {
+	return int(end.Unix()/60 - start.Unix()/60)
 }
 
 // DiffHours 计算两个时间差小时数
-func (tc timeCalculate) DiffHours(start, end time.Time) int64 {
-	return end.Unix()/3600 - start.Unix()/3600
+func (tc timeCalculate) DiffHours(start, end time.Time) int {
+	return int(end.Unix()/3600 - start.Unix()/3600)
 }
 
 // DiffDays 计算两个时间差天数
-func (tc timeCalculate) DiffDays(start, end time.Time) int64 {
-	return end.Unix()/86400 - start.Unix()/86400
+func (tc timeCalculate) DiffDays(start, end time.Time) int {
+	return int(end.Unix()/86400 - start.Unix()/86400)
 }
 
 // DiffMonths 计算两个时间差月数
-func (tc timeCalculate) DiffMonths(start, end time.Time) int64 {
-	return end.Unix()/2592000 - start.Unix()/2592000
+func (tc timeCalculate) DiffMonths(start, end time.Time) int {
+	return int(end.Unix()/2592000 - start.Unix()/2592000)
 }
 
 // DiffYears 计算两个时间差年数
-func (tc timeCalculate) DiffYears(start, end time.Time) int64 {
-	return end.Unix()/31536000 - start.Unix()/31536000
+func (tc timeCalculate) DiffYears(start, end time.Time) int {
+	return int(end.Unix()/31536000 - start.Unix()/31536000)
 }
