@@ -23,14 +23,6 @@ func TestMath(t *testing.T) {
 	b := random.Bool()
 	fmt.Println("随机布尔值", b)
 
-	src := random.SrcEnNumber()
-	//src = random.SrcEn()
-	//src = random.SrcEnUpper()
-	//src = random.SrcEnLower()
-	length := 10
-	res := random.Generate(src, length)
-	fmt.Println("随机字符串:", res)
-
 	condition := tools.Math.Condition
 
 	condition.IfThenElse(true, func() {
