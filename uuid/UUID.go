@@ -8,7 +8,7 @@ import (
 // NewV1 基于时间和MAC地址生成的UUID, offMinus 是否去除"-"
 func (ue Enter) NewV1(offMinus bool) string {
 	u, _ := uuid.NewV1()
-	if !offMinus {
+	if offMinus {
 		return strings.ReplaceAll(u.String(), "-", "")
 	}
 	return u.String()
@@ -17,7 +17,7 @@ func (ue Enter) NewV1(offMinus bool) string {
 // NewV4 基于随机数生成的UUID, offMinus 是否去除"-"
 func (ue Enter) NewV4(offMinus bool) string {
 	u, _ := uuid.NewV4()
-	if !offMinus {
+	if offMinus {
 		return strings.ReplaceAll(u.String(), "-", "")
 	}
 	return u.String()
