@@ -62,3 +62,27 @@ func (rm randomMath) EnLower(length int) string {
 	src := "abcdefghijklmnopqrstuvwxyz"
 	return rm.Generate(src, length)
 }
+
+// Hex 创建一个随机十六进制字符串
+func (rm randomMath) Hex(length int) string {
+	src := "0123456789abcdef"
+	return rm.Generate(src, length)
+}
+
+// Case 创建一个随机大小写英文字符串, 数字, 符号
+func (rm randomMath) Case(length int) string {
+	src := "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%&_="
+	return rm.Generate(src, length)
+}
+
+// LowerEnNumber 创建一个随机小写英文字符串, 数字
+func (rm randomMath) LowerEnNumber(length int) string {
+	src := "0123456789abcdefghijklmnopqrstuvwxyz"
+	return rm.Generate(src, length)
+}
+
+// UpperEnNumber 创建一个随机大写英文字符串, 数字
+func (rm randomMath) UpperEnNumber(length int) string {
+	src := "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	return rm.Generate(src, length)
+}
